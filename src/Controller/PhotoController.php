@@ -9,34 +9,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use \Symfony\Bundle\SecurityBundle\Security;
 
 class PhotoController extends AbstractController
 {
+    private $security;
+
+    // The security service is automatically injected into the controller
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_photo_index', methods: ['GET'])]
     public function index(PhotoRepository $photoRepository): Response
     {
+        $user = $this->security->getUser();
+
         return $this->render('photo/index.html.twig', [
             'photos' => $photoRepository->findAll(),
-        ]);
-    }
-
-    #[Route('/photo/add', name: 'app_photo_add', methods: ['GET', 'POST'])]
-    public function new(Request $request, PhotoRepository $photoRepository): Response
-    {
-        $photo = new Photo();
-        $form = $this->createForm(PhotoType::class, $photo);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $photoRepository->save($photo, true);
-
-            return $this->redirectToRoute('app_photo_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('photo/add.html.twig', [
-            'photo' => $photo,
-            'form' => $form,
+            'user' => $user,
         ]);
     }
 
