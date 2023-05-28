@@ -87,10 +87,12 @@ class Photo
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate($date): void
     {
-        $this->date = $date;
+        if (is_string($date)) {
+            $date = \DateTime::createFromFormat('d/m/Y', $date);
+        }
 
-        return $this;
+        $this->date = $date;
     }
 }
