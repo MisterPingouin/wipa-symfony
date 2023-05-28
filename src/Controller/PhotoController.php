@@ -21,7 +21,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/add', name: 'app_photo_add', methods: ['GET', 'POST'])]
+    #[Route('/photo/add', name: 'app_photo_add', methods: ['GET', 'POST'])]
     public function new(Request $request, PhotoRepository $photoRepository): Response
     {
         $photo = new Photo();
@@ -40,7 +40,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_photo_show', methods: ['GET'])]
+    #[Route('/photo/{id}', name: 'app_photo_show', methods: ['GET'])]
     public function show(Photo $photo): Response
     {
         return $this->render('photo/show.html.twig', [
@@ -48,7 +48,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_photo_edit', methods: ['GET', 'POST'])]
+    #[Route('/photo/{id}/edit', name: 'app_photo_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Photo $photo, PhotoRepository $photoRepository): Response
     {
         $form = $this->createForm(PhotoType::class, $photo);
@@ -66,7 +66,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_photo_delete', methods: ['POST'])]
+    #[Route('/photo/{id}/delete', name: 'app_photo_delete', methods: ['POST'])]
     public function delete(Request $request, Photo $photo, PhotoRepository $photoRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$photo->getId(), $request->request->get('_token'))) {
