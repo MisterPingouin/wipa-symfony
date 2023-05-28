@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 class PhotoType extends AbstractType
 {
@@ -30,9 +30,8 @@ class PhotoType extends AbstractType
             ->add('description', TextType::class, [
                 'label' => 'Comment',
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Comment']
-            ])
-            ->add('date', HiddenType::class);
-               
+            ]);
+         
     }
 
     public function configureOptions(OptionsResolver $resolver): void

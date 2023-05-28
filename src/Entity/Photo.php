@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
 class Photo
 {
+    public function __construct()
+    {
+        $this->date = new \DateTime(); // Set default value to current date and time
+    }
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,6 +33,23 @@ class Photo
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'userPhotos')]
+
+    private ?User $user = null;  // ici le type doit être 'User' et non 'user'
+
+    // ...
+    
+    public function getUser(): ?User  // ici aussi le type doit être 'User'
+    {
+        return $this->user;
+    }
+    
+    public function setUser(?User $user): self  // et ici aussi le type doit être 'User'
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -95,4 +116,5 @@ class Photo
 
         $this->date = $date;
     }
+
 }
