@@ -16,6 +16,34 @@
 							</div>
 						</div>
 					{% endfor %}
+                    <div id="popup-container">
+			<div id="popup-content" class="d-flex flex-column flex-lg-row">
+				<img id="popup-image" src="" alt="" class="ms-md-5 ms-0">
+				<div id="popup-info">
+					<ul>
+						<li class="poptitle">Title :<p id="popup-title"></p>
+						</li>
+						<li>Prompt :</li>
+						<li></li>
+						<li>
+							<p id="popup-prompt"></p>
+						</li>
+						<li></li>
+						<li>Description :</li>
+						<li></li>
+						<li>
+							<p id="popup-description"></p>
+						</li>
+						<li></li>
+						<li>Added date :</li>
+						<li></li>
+						<li>
+							<p id="popup-date"></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		
 	{% else %}
 		<li>Nothing to display</li>
