@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wipa - Add pic{% endblock %}
+
+{% block body %}
+	<div class="container d-flex justify-content-center">
+		<div class="col-12 col-md-6">
+			<h1 class="mt-4">Add your picture</h1>
+			<div class="line mt-1"></div>
+    {{ include('photo/_form.html.twig') }}
+    		</div>
+	</div>
+{% endblock %}
+    {% block javascripts %}
+     {{ encore_entry_script_tags('app_photo_add') }}
+     {% endblock %}

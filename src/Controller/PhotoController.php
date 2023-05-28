@@ -21,7 +21,7 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_photo_new', methods: ['GET', 'POST'])]
+    #[Route('/add', name: 'app_photo_add', methods: ['GET', 'POST'])]
     public function new(Request $request, PhotoRepository $photoRepository): Response
     {
         $photo = new Photo();
@@ -34,7 +34,7 @@ class PhotoController extends AbstractController
             return $this->redirectToRoute('app_photo_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('photo/new.html.twig', [
+        return $this->renderForm('photo/add.html.twig', [
             'photo' => $photo,
             'form' => $form,
         ]);

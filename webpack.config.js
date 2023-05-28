@@ -26,7 +26,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('app_photo_index', './assets/js/index.js')
-
+    .addEntry('app_photo_add', './assets/js/addformpreview.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
