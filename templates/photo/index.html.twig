@@ -3,41 +3,24 @@
 {% block title %}Photo index{% endblock %}
 
 {% block body %}
-    <h1>Photo index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Link</th>
-                <th>Prompt</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for photo in photos %}
-            <tr>
-                <td>{{ photo.id }}</td>
-                <td>{{ photo.title }}</td>
-                <td>{{ photo.link }}</td>
-                <td>{{ photo.prompt }}</td>
-                <td>{{ photo.description }}</td>
-                <td>{{ photo.date ? photo.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_photo_show', {'id': photo.id}) }}">show</a>
-                    <a href="{{ path('app_photo_edit', {'id': photo.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_photo_new') }}">Create new</a>
+   {% if photos is defined %}
+		<div class="container text-center mt-3">
+			<div class="col-md-12">
+				<div class="row row-cols-lg-5 row-cols-md-3 row-cols-2 g-0 mh-25 mw-25">
+					{% for photo in photos %}
+						<div class="col">
+							<div class="img-container">
+							{% set formatted_date = photo.date|date("d F Y") %}
+								<a href="#" data-photo-id="{{photo.id}}" data-photo-url="{{photo.link}}" data-photo-prompt="{{photo.prompt}}" data-photo-title="{{photo.title}}" data-photo-description="{{photo.description}}" data-photo-date="{{formatted_date}}"  ><img src="{{photo.link }}" alt="" class="img-fluid img-fit pop-up-image"></a>
+								<div class="img-title">{{photo.title}}</div>
+							</div>
+						</div>
+					{% endfor %}
+		
+	{% else %}
+		<li>Nothing to display</li>
+	{% endif %}
+    {% block javascripts %}
+     {{ encore_entry_script_tags('app_photo_index') }}
+     {% endblock %}
 {% endblock %}
