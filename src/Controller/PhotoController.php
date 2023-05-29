@@ -28,10 +28,11 @@ class PhotoController extends AbstractController
     {
         $user = $this->getUser();
         $photo = new Photo();
+        $photo->setUser($user); 
         $form = $this->createForm(PhotoType::class, $photo);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-$photoRepository->save($photo, true);
+        $photoRepository->save($photo, true);
         return $this->redirectToRoute('app_photo_index', [], Response::HTTP_SEE_OTHER);
     }
     return $this->renderForm('photo/add.html.twig', ['photo' => $photo, 'form' => $form, 'user' => $user,
