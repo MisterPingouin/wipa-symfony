@@ -10,8 +10,6 @@ $accentcolor: #138feb;
 
 $primary: $darkcolor;
 $secondary: $lightcolor;
-$btn-primary-bg: $accentcolor;
-
 /* General Design */
 
 .line {
@@ -319,3 +317,5 @@ h1 span {
 }
 
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";

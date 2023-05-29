@@ -1,16 +1,11 @@
-{{ form_start(form, {'attr': {'id': 'new_edit_utilisateur'}}) }}
-{# utilisation de classes bootstrap pour la mise en forme #}
-        <div class="row">
-                <div class="col-12">
-                        {{ form_label(form.username) }}
-                        {{ form_widget(form.username) }}
-                </div>
-                <div class="col-12">
-                        {{ form_label(form.password) }}
-                        {{ form_widget(form.password) }}
-                </div>
-
-        </div>
-        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'id': 'new_edit_utilisateur', 'class': 'needs-validation'}}) }}
+<div class="mb-3">
+    {{ form_label(form.username, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+    {{ form_label(form.password, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+</div>
+<button class="btn btn-success">{{ button_label|default('Register') }}</button>
 {{ form_end(form) }}
-
